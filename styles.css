@@ -1,7 +1,7 @@
 :root {
   --text-color: #d0e0ff;
   --link-color: #4a76ee;
-  --background-color: #eeeff1;
+  --background-color: #000000;
 }
 
 * {
@@ -23,7 +23,7 @@ body {
 }
 
 a {
-  color: var(--link-color);
+  color: white;
   text-decoration: none;
 }
 
@@ -67,7 +67,7 @@ nav .right a span {
   height: 100vh;
   object-fit: cover;
   z-index: -1;
-  filter: blur(10px);
+  filter: blur(15px);
   background-color: black; /* Ensures no white borders */
 }
 
@@ -76,51 +76,165 @@ nav .right a span {
 /* SECTION 1: Hero */
 .hero-section {
   display: flex;
+  align-items: flex-start; /* Aligns items at the top */
   justify-content: space-between;
-  align-items: center;
-  padding: 0 50px;
-  margin: 50px 0;
-  margin-bottom: 100px;
+  padding: 50px;
   gap: 40px;
 }
 
 .hero-section .text {
   flex: 5;
+  max-width: 55%; /* Ensures text flows properly */
+  font-size: 18px;
+  line-height: 1.6;
+  color: #d0e0ff;
 }
 
 .hero-section .text h2 {
-  font-size: 45px;
+  font-size: 45px; /* Adjust this if needed */
+  font-weight: bold;
+  text-align: left; /* Ensures it stays aligned */
+  margin-bottom: 15px; /* Adds spacing below */
 }
 
 .hero-section .text .links {
-  margin-top: 25px;
+  display: flex;
+  gap: 15px; /* Spacing between buttons */
+  margin-top: 40px; /* Increase this value to move buttons further down */
 }
 
 .hero-section .text .links a {
-  display: inline-block;
-  padding: 5px 10px;
-  border: 2px solid var(--link-color);
-  border-radius: 5px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  transition: .1s;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  border: 3px solid #7c24b2;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white; /* Set text color to white initially */
+  overflow: hidden;
+  border-radius: 50px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.7s;
+  width: 180px;
+  height: 50px; /* Ensures uniform button height */
+  line-height: 50px; /* Helps vertically center text */
 }
 
+/* Ensure the text is always visible */
+.hero-section .text .links a span:not(.first):not(.second):not(.third):not(.fourth) {
+  position: relative;
+  z-index: 2; /* Keeps text above animation */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: rgb(255, 255, 255); /* Ensure the text is white */
+  transition: color 0.7s; /* Smooth color transition on hover */
+}
+
+/* Ensure the icon is always visible */
+.hero-section .text .links a i {
+  color: rgb(189, 66, 233); /* Ensure the icon is white */
+  margin-right: 8px; /* Ensures spacing between icon and text */
+  transition: color 0.7s; /* Smooth color transition on hover */
+  z-index: 3; /* Ensure the icon is above everything */
+}
+
+/* Animation blocks (hidden by default) */
+.hero-section .text .links a span.first,
+.hero-section .text .links a span.second,
+.hero-section .text .links a span.third,
+.hero-section .text .links a span.fourth {
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  background: #ffffff; /* Color of the animation blocks */
+  transition: all 0.7s;
+  z-index: 1; /* Ensure the blocks are behind the text */
+  opacity: 0; /* Hidden by default */
+}
+
+/* Block Positions */
+.hero-section .text .links a .first {
+  right: 100%;
+  top: 0;
+}
+
+.hero-section .text .links a .second {
+  left: 25%;
+  top: -100%;
+}
+
+.hero-section .text .links a .third {
+  left: 50%;
+  top: 100%;
+}
+
+.hero-section .text .links a .fourth {
+  left: 100%;
+  top: 0;
+}
+
+/* Hover Effect */
 .hero-section .text .links a:hover {
-  color: var(--text-color);
-  border: 2px solid var(--text-color);
+  color: #11233d; /* Change text color on hover */
+}
+
+.hero-section .text .links a span:not(.first):not(.second):not(.third):not(.fourth) {
+  position: relative;
+  z-index: 2; /* Keeps text above animation */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: rgb(184, 197, 255); /* Ensure the text is white */
+  transition: color 0.7s; /* Smooth color transition on hover */
+}
+
+.hero-section .text .links a:hover span:not(.first):not(.second):not(.third):not(.fourth) {
+  color: black; /* Change text color to black on hover */
+}
+
+.hero-section .text .links a:hover i {
+  color: #11233d; /* Change icon color on hover */
+}
+
+/* Animation block positions on hover */
+.hero-section .text .links a:hover .first {
+  right: 0;
+  opacity: 1;
+}
+
+.hero-section .text .links a:hover .second {
+  top: 0;
+  left: 50%;
+  opacity: 1;
+}
+
+.hero-section .text .links a:hover .third {
+  top: 0;
+  left: 25%;
+  opacity: 1;
+}
+
+.hero-section .text .links a:hover .fourth {
+  left: 0;
+  opacity: 1;
 }
 
 .hero-section .headshot {
-  flex: 2;
-  display: flex;
-  justify-content: right;
-
-  
+  position: absolute; /* Allows manual positioning */
+  top: 100px; /* Adjust this to move up/down */
+  right: 100px; /* Adjust this to move left/right */
+  transform: translate(-20%, 0); /* Fine-tune the position */
 }
 
 .hero-section .headshot img {
-  width: 350px;
+  width: 300px;
   border-radius: 50%;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
 }
